@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+message functionRequest {
+  string functionName = 1;
+}
+
+message functionVersionsInfo {
+  string version = 1;
+  string createdAt = 2;
+}
+
+message functionListVersionsResponse {
+  repeated functionVersionsInfo versioninfo = 1;
+}
+
+message deleteFunctionResponse {
+  bool deleteBool = 1;
+}
+
+service listDelete {
+  rpc listFunctionVersions (functionRequest) returns (functionListVersionsResponse) {}
+  rpc deleteFunction(functionRequest) returns (deleteFunctionResponse) {}
+}
