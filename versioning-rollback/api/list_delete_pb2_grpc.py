@@ -36,12 +36,12 @@ class listDeleteStub(object):
         """
         self.listFunctionVersions = channel.unary_unary(
                 '/listDelete/listFunctionVersions',
-                request_serializer=list__delete__pb2.functionRequest.SerializeToString,
+                request_serializer=list__delete__pb2.listFunctionRequest.SerializeToString,
                 response_deserializer=list__delete__pb2.functionListVersionsResponse.FromString,
                 _registered_method=True)
         self.deleteFunction = channel.unary_unary(
                 '/listDelete/deleteFunction',
-                request_serializer=list__delete__pb2.functionRequest.SerializeToString,
+                request_serializer=list__delete__pb2.deleteFunctionRequest.SerializeToString,
                 response_deserializer=list__delete__pb2.deleteFunctionResponse.FromString,
                 _registered_method=True)
 
@@ -66,12 +66,12 @@ def add_listDeleteServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'listFunctionVersions': grpc.unary_unary_rpc_method_handler(
                     servicer.listFunctionVersions,
-                    request_deserializer=list__delete__pb2.functionRequest.FromString,
+                    request_deserializer=list__delete__pb2.listFunctionRequest.FromString,
                     response_serializer=list__delete__pb2.functionListVersionsResponse.SerializeToString,
             ),
             'deleteFunction': grpc.unary_unary_rpc_method_handler(
                     servicer.deleteFunction,
-                    request_deserializer=list__delete__pb2.functionRequest.FromString,
+                    request_deserializer=list__delete__pb2.deleteFunctionRequest.FromString,
                     response_serializer=list__delete__pb2.deleteFunctionResponse.SerializeToString,
             ),
     }
@@ -100,7 +100,7 @@ class listDelete(object):
             request,
             target,
             '/listDelete/listFunctionVersions',
-            list__delete__pb2.functionRequest.SerializeToString,
+            list__delete__pb2.listFunctionRequest.SerializeToString,
             list__delete__pb2.functionListVersionsResponse.FromString,
             options,
             channel_credentials,
@@ -127,7 +127,7 @@ class listDelete(object):
             request,
             target,
             '/listDelete/deleteFunction',
-            list__delete__pb2.functionRequest.SerializeToString,
+            list__delete__pb2.deleteFunctionRequest.SerializeToString,
             list__delete__pb2.deleteFunctionResponse.FromString,
             options,
             channel_credentials,
