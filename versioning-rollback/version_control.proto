@@ -1,10 +1,5 @@
 syntax = "proto3";
 
-service VersionControlService {
-  rpc RollbackToPreviousVersion(FunctionRequest) returns (RollbackResponse);
-  rpc CompareFunctionVersions(CompareRequest) returns (CompareResponse);
-}
-
 message FunctionRequest {
   string function_name = 1;
 }
@@ -27,4 +22,9 @@ message Change {
 
 message CompareResponse {
   repeated Change changes = 1;
+}
+
+service VersionControlService {
+  rpc RollbackToPreviousVersion(FunctionRequest) returns (RollbackResponse) {}
+  rpc CompareFunctionVersions(CompareRequest) returns (CompareResponse) {}
 }

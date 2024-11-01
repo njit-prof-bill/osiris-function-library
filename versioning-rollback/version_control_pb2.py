@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)versioning-rollback/version_control.proto\"(\n\x0f\x46unctionRequest\x12\x15\n\rfunction_name\x18\x01 \x01(\t\"#\n\x10RollbackResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"K\n\x0e\x43ompareRequest\x12\x15\n\rfunction_name\x18\x01 \x01(\t\x12\x10\n\x08version1\x18\x02 \x01(\t\x12\x10\n\x08version2\x18\x03 \x01(\t\"0\n\x06\x43hange\x12\x0c\n\x04line\x18\x01 \x01(\x05\x12\x0b\n\x03old\x18\x02 \x01(\t\x12\x0b\n\x03new\x18\x03 \x01(\t\"+\n\x0f\x43ompareResponse\x12\x18\n\x07\x63hanges\x18\x01 \x03(\x0b\x32\x07.Change2\x97\x01\n\x15VersionControlService\x12@\n\x19RollbackToPreviousVersion\x12\x10.FunctionRequest\x1a\x11.RollbackResponse\x12<\n\x17\x43ompareFunctionVersions\x12\x0f.CompareRequest\x1a\x10.CompareResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)versioning-rollback/version_control.proto\"(\n\x0f\x46unctionRequest\x12\x15\n\rfunction_name\x18\x01 \x01(\t\"#\n\x10RollbackResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"K\n\x0e\x43ompareRequest\x12\x15\n\rfunction_name\x18\x01 \x01(\t\x12\x10\n\x08version1\x18\x02 \x01(\t\x12\x10\n\x08version2\x18\x03 \x01(\t\"0\n\x06\x43hange\x12\x0c\n\x04line\x18\x01 \x01(\x05\x12\x0b\n\x03old\x18\x02 \x01(\t\x12\x0b\n\x03new\x18\x03 \x01(\t\"+\n\x0f\x43ompareResponse\x12\x18\n\x07\x63hanges\x18\x01 \x03(\x0b\x32\x07.Change2\x9b\x01\n\x15VersionControlService\x12\x42\n\x19RollbackToPreviousVersion\x12\x10.FunctionRequest\x1a\x11.RollbackResponse\"\x00\x12>\n\x17\x43ompareFunctionVersions\x12\x0f.CompareRequest\x1a\x10.CompareResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -42,5 +42,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_COMPARERESPONSE']._serialized_start=251
   _globals['_COMPARERESPONSE']._serialized_end=294
   _globals['_VERSIONCONTROLSERVICE']._serialized_start=297
-  _globals['_VERSIONCONTROLSERVICE']._serialized_end=448
+  _globals['_VERSIONCONTROLSERVICE']._serialized_end=452
 # @@protoc_insertion_point(module_scope)
