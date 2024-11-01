@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package functionservice;
+
+service FunctionVersionService {
+  rpc GetActiveFunctionVersion (GetVersionRequest) returns (GetVersionResponse);
+  rpc SetActiveFunctionVersion (SetVersionRequest) returns (SetVersionResponse);
+}
+
+message GetVersionRequest {}
+
+message GetVersionResponse {
+  string version = 1;
+}
+
+message SetVersionRequest {
+  string version = 1;
+}
+
+message SetVersionResponse {
+  bool success = 1;
+}
