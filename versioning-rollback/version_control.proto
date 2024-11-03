@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+message FunctionRequest {
+  string function_name = 1;
+}
+
+message RollbackResponse {
+  bool success = 1;
+}
+
+message CompareRequest {
+  string function_name = 1;
+  string version1 = 2;
+  string version2 = 3;
+}
+
+message Change {
+  int32 line = 1;
+  string old = 2;
+  string new = 3;
+}
+
+message CompareResponse {
+  repeated Change changes = 1;
+}
+
+service VersionControlService {
+  rpc RollbackToPreviousVersion(FunctionRequest) returns (RollbackResponse) {}
+  rpc CompareFunctionVersions(CompareRequest) returns (CompareResponse) {}
+}
