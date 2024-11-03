@@ -1,9 +1,6 @@
 from concurrent import futures
 import grpc
-import function_service_pb2
-import function_service_pb2_grpc
-from archiveFunctionVersion import archiveFunctionVersion
-from restoreArchivedVersion import restoreArchivedVersion
+from archiveRestoreApi import function_service_pb2, function_service_pb2_grpc, restoreArchivedVersion, archiveFunctionVersion
 
 functions = {}
 
@@ -14,12 +11,12 @@ functions['example_function'] = {
 
 class FunctionServiceServicer(function_service_pb2_grpc.FunctionServiceServicer):
     def ArchiveFunctionVersion(self, request, context):
-        success = archiveFunctionVersion(request.function_name, request.version)
+        success = archiveFunctionVersion.archiveFunctionVersion(request.function_name, request.version)
         message = "Archived successfully." if success else "Failed to archive."
         return function_service_pb2.FunctionResponse(success=success, message=message)
 
     def RestoreArchivedVersion(self, request, context):
-        success = restoreArchivedVersion(request.function_name, request.version)
+        success = restoreArchivedVersion.restoreArchivedVersion(request.function_name, request.version)
         message = "Restored successfully." if success else "Failed to restore."
         return function_service_pb2.FunctionResponse(success=success, message=message)
 

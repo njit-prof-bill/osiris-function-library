@@ -3,9 +3,9 @@
 import grpc
 import warnings
 
-import list_delete_pb2 as list__delete__pb2
+from archiveRestoreApi import function_service_pb2 as function__service__pb2
 
-GRPC_GENERATED_VERSION = '1.67.0'
+GRPC_GENERATED_VERSION = '1.67.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -18,14 +18,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in list_delete_pb2_grpc.py depends on'
+        + f' but the generated code in function_service_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
-class listDeleteStub(object):
+class FunctionServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -34,59 +34,59 @@ class listDeleteStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.listFunctionVersions = channel.unary_unary(
-                '/listDelete/listFunctionVersions',
-                request_serializer=list__delete__pb2.listFunctionRequest.SerializeToString,
-                response_deserializer=list__delete__pb2.functionListVersionsResponse.FromString,
+        self.ArchiveFunctionVersion = channel.unary_unary(
+                '/functionservice.FunctionService/ArchiveFunctionVersion',
+                request_serializer=function__service__pb2.FunctionRequest.SerializeToString,
+                response_deserializer=function__service__pb2.FunctionResponse.FromString,
                 _registered_method=True)
-        self.deleteFunction = channel.unary_unary(
-                '/listDelete/deleteFunction',
-                request_serializer=list__delete__pb2.deleteFunctionRequest.SerializeToString,
-                response_deserializer=list__delete__pb2.deleteFunctionResponse.FromString,
+        self.RestoreArchivedVersion = channel.unary_unary(
+                '/functionservice.FunctionService/RestoreArchivedVersion',
+                request_serializer=function__service__pb2.FunctionRequest.SerializeToString,
+                response_deserializer=function__service__pb2.FunctionResponse.FromString,
                 _registered_method=True)
 
 
-class listDeleteServicer(object):
+class FunctionServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def listFunctionVersions(self, request, context):
+    def ArchiveFunctionVersion(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def deleteFunction(self, request, context):
+    def RestoreArchivedVersion(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_listDeleteServicer_to_server(servicer, server):
+def add_FunctionServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'listFunctionVersions': grpc.unary_unary_rpc_method_handler(
-                    servicer.listFunctionVersions,
-                    request_deserializer=list__delete__pb2.listFunctionRequest.FromString,
-                    response_serializer=list__delete__pb2.functionListVersionsResponse.SerializeToString,
+            'ArchiveFunctionVersion': grpc.unary_unary_rpc_method_handler(
+                    servicer.ArchiveFunctionVersion,
+                    request_deserializer=function__service__pb2.FunctionRequest.FromString,
+                    response_serializer=function__service__pb2.FunctionResponse.SerializeToString,
             ),
-            'deleteFunction': grpc.unary_unary_rpc_method_handler(
-                    servicer.deleteFunction,
-                    request_deserializer=list__delete__pb2.deleteFunctionRequest.FromString,
-                    response_serializer=list__delete__pb2.deleteFunctionResponse.SerializeToString,
+            'RestoreArchivedVersion': grpc.unary_unary_rpc_method_handler(
+                    servicer.RestoreArchivedVersion,
+                    request_deserializer=function__service__pb2.FunctionRequest.FromString,
+                    response_serializer=function__service__pb2.FunctionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'listDelete', rpc_method_handlers)
+            'functionservice.FunctionService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('listDelete', rpc_method_handlers)
+    server.add_registered_method_handlers('functionservice.FunctionService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class listDelete(object):
+class FunctionService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def listFunctionVersions(request,
+    def ArchiveFunctionVersion(request,
             target,
             options=(),
             channel_credentials=None,
@@ -99,9 +99,9 @@ class listDelete(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/listDelete/listFunctionVersions',
-            list__delete__pb2.listFunctionRequest.SerializeToString,
-            list__delete__pb2.functionListVersionsResponse.FromString,
+            '/functionservice.FunctionService/ArchiveFunctionVersion',
+            function__service__pb2.FunctionRequest.SerializeToString,
+            function__service__pb2.FunctionResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -113,7 +113,7 @@ class listDelete(object):
             _registered_method=True)
 
     @staticmethod
-    def deleteFunction(request,
+    def RestoreArchivedVersion(request,
             target,
             options=(),
             channel_credentials=None,
@@ -126,9 +126,9 @@ class listDelete(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/listDelete/deleteFunction',
-            list__delete__pb2.deleteFunctionRequest.SerializeToString,
-            list__delete__pb2.deleteFunctionResponse.FromString,
+            '/functionservice.FunctionService/RestoreArchivedVersion',
+            function__service__pb2.FunctionRequest.SerializeToString,
+            function__service__pb2.FunctionResponse.FromString,
             options,
             channel_credentials,
             insecure,

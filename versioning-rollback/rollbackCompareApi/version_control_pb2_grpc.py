@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import function_version_pb2 as function__version__pb2
+from rollbackCompareApi import version_control_pb2 as versioning__rollback_dot_version__control__pb2
 
 GRPC_GENERATED_VERSION = '1.67.1'
 GRPC_VERSION = grpc.__version__
@@ -18,14 +18,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in function_version_pb2_grpc.py depends on'
+        + f' but the generated code in versioning_rollback/version_control_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
-class FunctionVersionServiceStub(object):
+class VersionControlServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -34,59 +34,59 @@ class FunctionVersionServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GetActiveFunctionVersion = channel.unary_unary(
-                '/functionservice.FunctionVersionService/GetActiveFunctionVersion',
-                request_serializer=function__version__pb2.GetVersionRequest.SerializeToString,
-                response_deserializer=function__version__pb2.GetVersionResponse.FromString,
+        self.RollbackToPreviousVersion = channel.unary_unary(
+                '/VersionControlService/RollbackToPreviousVersion',
+                request_serializer=versioning__rollback_dot_version__control__pb2.FunctionRequest.SerializeToString,
+                response_deserializer=versioning__rollback_dot_version__control__pb2.RollbackResponse.FromString,
                 _registered_method=True)
-        self.SetActiveFunctionVersion = channel.unary_unary(
-                '/functionservice.FunctionVersionService/SetActiveFunctionVersion',
-                request_serializer=function__version__pb2.SetVersionRequest.SerializeToString,
-                response_deserializer=function__version__pb2.SetVersionResponse.FromString,
+        self.CompareFunctionVersions = channel.unary_unary(
+                '/VersionControlService/CompareFunctionVersions',
+                request_serializer=versioning__rollback_dot_version__control__pb2.CompareRequest.SerializeToString,
+                response_deserializer=versioning__rollback_dot_version__control__pb2.CompareResponse.FromString,
                 _registered_method=True)
 
 
-class FunctionVersionServiceServicer(object):
+class VersionControlServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def GetActiveFunctionVersion(self, request, context):
+    def RollbackToPreviousVersion(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetActiveFunctionVersion(self, request, context):
+    def CompareFunctionVersions(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_FunctionVersionServiceServicer_to_server(servicer, server):
+def add_VersionControlServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetActiveFunctionVersion': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetActiveFunctionVersion,
-                    request_deserializer=function__version__pb2.GetVersionRequest.FromString,
-                    response_serializer=function__version__pb2.GetVersionResponse.SerializeToString,
+            'RollbackToPreviousVersion': grpc.unary_unary_rpc_method_handler(
+                    servicer.RollbackToPreviousVersion,
+                    request_deserializer=versioning__rollback_dot_version__control__pb2.FunctionRequest.FromString,
+                    response_serializer=versioning__rollback_dot_version__control__pb2.RollbackResponse.SerializeToString,
             ),
-            'SetActiveFunctionVersion': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetActiveFunctionVersion,
-                    request_deserializer=function__version__pb2.SetVersionRequest.FromString,
-                    response_serializer=function__version__pb2.SetVersionResponse.SerializeToString,
+            'CompareFunctionVersions': grpc.unary_unary_rpc_method_handler(
+                    servicer.CompareFunctionVersions,
+                    request_deserializer=versioning__rollback_dot_version__control__pb2.CompareRequest.FromString,
+                    response_serializer=versioning__rollback_dot_version__control__pb2.CompareResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'functionservice.FunctionVersionService', rpc_method_handlers)
+            'VersionControlService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('functionservice.FunctionVersionService', rpc_method_handlers)
+    server.add_registered_method_handlers('VersionControlService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class FunctionVersionService(object):
+class VersionControlService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def GetActiveFunctionVersion(request,
+    def RollbackToPreviousVersion(request,
             target,
             options=(),
             channel_credentials=None,
@@ -99,9 +99,9 @@ class FunctionVersionService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/functionservice.FunctionVersionService/GetActiveFunctionVersion',
-            function__version__pb2.GetVersionRequest.SerializeToString,
-            function__version__pb2.GetVersionResponse.FromString,
+            '/VersionControlService/RollbackToPreviousVersion',
+            versioning__rollback_dot_version__control__pb2.FunctionRequest.SerializeToString,
+            versioning__rollback_dot_version__control__pb2.RollbackResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -113,7 +113,7 @@ class FunctionVersionService(object):
             _registered_method=True)
 
     @staticmethod
-    def SetActiveFunctionVersion(request,
+    def CompareFunctionVersions(request,
             target,
             options=(),
             channel_credentials=None,
@@ -126,9 +126,9 @@ class FunctionVersionService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/functionservice.FunctionVersionService/SetActiveFunctionVersion',
-            function__version__pb2.SetVersionRequest.SerializeToString,
-            function__version__pb2.SetVersionResponse.FromString,
+            '/VersionControlService/CompareFunctionVersions',
+            versioning__rollback_dot_version__control__pb2.CompareRequest.SerializeToString,
+            versioning__rollback_dot_version__control__pb2.CompareResponse.FromString,
             options,
             channel_credentials,
             insecure,

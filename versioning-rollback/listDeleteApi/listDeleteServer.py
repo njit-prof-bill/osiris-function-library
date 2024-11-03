@@ -1,9 +1,7 @@
 import grpc
 from grpc_reflection.v1alpha import reflection
 from concurrent import futures
-import list_delete_pb2
-import list_delete_pb2_grpc
-
+from listDeleteApi import list_delete_pb2, list_delete_pb2_grpc
 # data to test with
 testData = [
   {"function_name": "addNumbers","code":"def add(a, b): return a + b", "version":"1.0", "created_at": "2024-10-01"},
