@@ -1,6 +1,7 @@
-from archiveFunctionVersion import functions
+from archiveRestoreApi import archiveRestoreServer
 
 def restoreArchivedVersion(function_name: str, version: str) -> bool:
+    functions = archiveRestoreServer.functions
     if function_name not in functions:
         return False
     if version not in functions[function_name]:

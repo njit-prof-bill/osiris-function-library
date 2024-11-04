@@ -1,15 +1,14 @@
 import grpc
-import function_versioning_pb2
-import function_versioning_pb2_grpc
+from createGetApi import create_get_version_pb2, create_get_version_pb2_grpc
 
 def run():
     # Connect to the server
     with grpc.insecure_channel('localhost:50051') as channel:
-        stub = function_versioning_pb2_grpc.FunctionVersioningStub(channel)
+        stub = create_get_version_pb2_grpc.FunctionVersioningStub(channel)
         
         # Test CreateFunctionVersion
         create_response = stub.CreateFunctionVersion(
-            function_versioning_pb2.CreateFunctionRequest(
+            create_get_version_pb2.CreateFunctionRequest(
                 function_name="addNumbers",
                 code="def add(a, b): return a + b",
                 version="2.0"
@@ -19,7 +18,7 @@ def run():
         
         # Test GetFunctionVersionDetails
         details_response = stub.GetFunctionVersionDetails(
-            function_versioning_pb2.GetFunctionDetailsRequest(
+            create_get_version_pb2.GetFunctionDetailsRequest(
                 function_name="addNumbers",
                 version="2.0"
             )

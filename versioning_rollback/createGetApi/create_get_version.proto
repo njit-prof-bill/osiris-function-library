@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package function_versioning;
+package create_get_version;
 
 // Define the request and response messages
 message CreateFunctionRequest {
@@ -26,7 +26,7 @@ message GetFunctionDetailsResponse {
 }
 
 // Define the FunctionVersioning service
-service FunctionVersioning {
+service CreateGetServicer {
     rpc CreateFunctionVersion(CreateFunctionRequest) returns (CreateFunctionResponse);
     rpc GetFunctionVersionDetails(GetFunctionDetailsRequest) returns (GetFunctionDetailsResponse);
 }

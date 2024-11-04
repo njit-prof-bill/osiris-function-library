@@ -1,9 +1,7 @@
 import grpc
 from concurrent import futures
 from grpc_reflection.v1alpha import reflection
-import version_control_pb2
-import version_control_pb2_grpc
-
+from rollbackCompareApi import version_control_pb2,version_control_pb2_grpc
 
 class VersionControlService(version_control_pb2_grpc.VersionControlServiceServicer):
     sampleData = {

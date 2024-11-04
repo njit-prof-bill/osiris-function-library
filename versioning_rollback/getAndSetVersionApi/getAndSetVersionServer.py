@@ -1,7 +1,6 @@
 import grpc
 from concurrent import futures
-import function_version_pb2
-import function_version_pb2_grpc
+from getAndSetVersionApi import function_version_pb2_grpc, function_version_pb2
 
 # Assuming existing code for version management is here
 # For example:
@@ -15,6 +14,7 @@ class FunctionVersionService(function_version_pb2_grpc.FunctionVersionServiceSer
 
     def SetActiveFunctionVersion(self, request, context):
         global current_version
+        function = request.function
         current_version = request.version
         return function_version_pb2.SetVersionResponse(success=True)
 

@@ -7,14 +7,17 @@ service FunctionVersionService {
   rpc SetActiveFunctionVersion (SetVersionRequest) returns (SetVersionResponse);
 }
 
-message GetVersionRequest {}
+message GetVersionRequest {
+  string function = 1;
+}
 
 message GetVersionResponse {
   string version = 1;
 }
 
 message SetVersionRequest {
-  string version = 1;
+  string function = 1;
+  string version = 2;
 }
 
 message SetVersionResponse {
