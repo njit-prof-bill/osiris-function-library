@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from archiveRestoreApi import function_service_pb2 as function__service__pb2
+from createGetApi import create_get_version_pb2 as create__get__version__pb2
 
 GRPC_GENERATED_VERSION = '1.67.1'
 GRPC_VERSION = grpc.__version__
@@ -18,15 +18,16 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in function_service_pb2_grpc.py depends on'
+        + f' but the generated code in create_get_version_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
-class FunctionServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+class CreateGetServicerStub(object):
+    """Define the FunctionVersioning service
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -34,59 +35,61 @@ class FunctionServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.ArchiveFunctionVersion = channel.unary_unary(
-                '/functionservice.FunctionService/ArchiveFunctionVersion',
-                request_serializer=function__service__pb2.FunctionRequest.SerializeToString,
-                response_deserializer=function__service__pb2.FunctionResponse.FromString,
+        self.CreateFunctionVersion = channel.unary_unary(
+                '/create_get_version.CreateGetServicer/CreateFunctionVersion',
+                request_serializer=create__get__version__pb2.CreateFunctionRequest.SerializeToString,
+                response_deserializer=create__get__version__pb2.CreateFunctionResponse.FromString,
                 _registered_method=True)
-        self.RestoreArchivedVersion = channel.unary_unary(
-                '/functionservice.FunctionService/RestoreArchivedVersion',
-                request_serializer=function__service__pb2.FunctionRequest.SerializeToString,
-                response_deserializer=function__service__pb2.FunctionResponse.FromString,
+        self.GetFunctionVersionDetails = channel.unary_unary(
+                '/create_get_version.CreateGetServicer/GetFunctionVersionDetails',
+                request_serializer=create__get__version__pb2.GetFunctionDetailsRequest.SerializeToString,
+                response_deserializer=create__get__version__pb2.GetFunctionDetailsResponse.FromString,
                 _registered_method=True)
 
 
-class FunctionServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
+class CreateGetServicerServicer(object):
+    """Define the FunctionVersioning service
+    """
 
-    def ArchiveFunctionVersion(self, request, context):
+    def CreateFunctionVersion(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RestoreArchivedVersion(self, request, context):
+    def GetFunctionVersionDetails(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_FunctionServiceServicer_to_server(servicer, server):
+def add_CreateGetServicerServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'ArchiveFunctionVersion': grpc.unary_unary_rpc_method_handler(
-                    servicer.ArchiveFunctionVersion,
-                    request_deserializer=function__service__pb2.FunctionRequest.FromString,
-                    response_serializer=function__service__pb2.FunctionResponse.SerializeToString,
+            'CreateFunctionVersion': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateFunctionVersion,
+                    request_deserializer=create__get__version__pb2.CreateFunctionRequest.FromString,
+                    response_serializer=create__get__version__pb2.CreateFunctionResponse.SerializeToString,
             ),
-            'RestoreArchivedVersion': grpc.unary_unary_rpc_method_handler(
-                    servicer.RestoreArchivedVersion,
-                    request_deserializer=function__service__pb2.FunctionRequest.FromString,
-                    response_serializer=function__service__pb2.FunctionResponse.SerializeToString,
+            'GetFunctionVersionDetails': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFunctionVersionDetails,
+                    request_deserializer=create__get__version__pb2.GetFunctionDetailsRequest.FromString,
+                    response_serializer=create__get__version__pb2.GetFunctionDetailsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'functionservice.FunctionService', rpc_method_handlers)
+            'create_get_version.CreateGetServicer', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('functionservice.FunctionService', rpc_method_handlers)
+    server.add_registered_method_handlers('create_get_version.CreateGetServicer', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class FunctionService(object):
-    """Missing associated documentation comment in .proto file."""
+class CreateGetServicer(object):
+    """Define the FunctionVersioning service
+    """
 
     @staticmethod
-    def ArchiveFunctionVersion(request,
+    def CreateFunctionVersion(request,
             target,
             options=(),
             channel_credentials=None,
@@ -99,9 +102,9 @@ class FunctionService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/functionservice.FunctionService/ArchiveFunctionVersion',
-            function__service__pb2.FunctionRequest.SerializeToString,
-            function__service__pb2.FunctionResponse.FromString,
+            '/create_get_version.CreateGetServicer/CreateFunctionVersion',
+            create__get__version__pb2.CreateFunctionRequest.SerializeToString,
+            create__get__version__pb2.CreateFunctionResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -113,7 +116,7 @@ class FunctionService(object):
             _registered_method=True)
 
     @staticmethod
-    def RestoreArchivedVersion(request,
+    def GetFunctionVersionDetails(request,
             target,
             options=(),
             channel_credentials=None,
@@ -126,9 +129,9 @@ class FunctionService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/functionservice.FunctionService/RestoreArchivedVersion',
-            function__service__pb2.FunctionRequest.SerializeToString,
-            function__service__pb2.FunctionResponse.FromString,
+            '/create_get_version.CreateGetServicer/GetFunctionVersionDetails',
+            create__get__version__pb2.GetFunctionDetailsRequest.SerializeToString,
+            create__get__version__pb2.GetFunctionDetailsResponse.FromString,
             options,
             channel_credentials,
             insecure,
