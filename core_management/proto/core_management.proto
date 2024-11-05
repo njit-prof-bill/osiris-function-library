@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+package core_management;
+
+// API 1 : addFunctionToLibrary
+// Request message for adding a function
+message AddFunctionRequest {
+    string function_name = 1;
+    string code = 2;
+    string runtime_env = 3;
+    string version = 4;
+}
+
+// Response message for adding a function
+message AddFunctionResponse {
+    bool success = 1;
+    string message = 2; // Make sure this line exists
+}
+
+// API 2 : updateFunctionInLibrary
+// Request to update function 
+message UpdateFunctionRequest{
+    string function_name = 1;
+    string code = 2;
+    string version = 3;
+}
+
+// Response to update function
+message UpdateFunctionResponse{
+    bool success = 1;
+    string message = 2;
+}
+
+// API 3 : removeFunctionFromLibrary
+// Request to remove function
+message RemoveFunctionRequest{
+    string function_name = 1;
+}
+
+// Response to remove function
+message RemoveFunctionResponse{
+    bool success = 1;
+    string message = 2;
+}
+
+// API 4: ListFunctions
+// Request message for listing all functions (no additional input needed)
+message ListFunctionsRequest {}
+
+// Response message for listing functions
+message ListFunctionsResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// API 5: GetFunctionDetails
+// Request message for getting function details
+message GetFunctionDetailsRequest {
+    string function_name = 1;
+}
+
+// Response message for getting function details
+message GetFunctionDetailsResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// API 8 and 9
+// Request message for publish/unpublish a function 
+message PublishFunctionRequest {
+    string function_name = 1;
+}
+
+// Response message for publish/unpublish a function
+message PublishFunctionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// API 10 : archiveFunction
+message ArchiveFunctionRequest {
+    string function_name = 1;
+}
+
+// Response message for adding a function
+message ArchiveFunctionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// Request message for rollback function version
+message RollbackFunctionVersionRequest {
+    string function_name = 1;
+    string target_version = 2;
+}
+
+// Response message for rollback function version
+message RollbackFunctionVersionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// API 7
+// Request and response for searching functions by runtime
+message SearchFunctionByRuntimeRequest {
+    string runtime = 1;  // The runtime environment to search for (e.g., Python 3.8, Node.js)
+}
+
+message FunctionDetails {
+    string function_name = 1;  // The name of the function
+    string version = 2;        // The version of the function
+}
+
+message SearchFunctionByRuntimeResponse {
+    repeated FunctionDetails functions = 1;  // List of functions that match the specified runtime
+}
+
+
+// Service definition
+service CoreManagement {
+    rpc AddFunction(AddFunctionRequest) returns (AddFunctionResponse);
+    rpc UpdateFunction(UpdateFunctionRequest) returns (UpdateFunctionResponse);
+    rpc RemoveFunction(RemoveFunctionRequest) returns (RemoveFunctionResponse);
+    rpc ListFunctions(ListFunctionsRequest) returns (ListFunctionsResponse);
+    rpc GetFunctionDetails(GetFunctionDetailsRequest) returns (GetFunctionDetailsResponse);
+    rpc PublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
+    rpc UnpublishFunction(PublishFunctionRequest) returns (PublishFunctionResponse);
+    rpc ArchiveFunction(ArchiveFunctionRequest) returns (ArchiveFunctionResponse);
+    rpc RollbackFunctionVersion(RollbackFunctionVersionRequest) returns (RollbackFunctionVersionResponse); // Add this line if missing
+    rpc SearchFunctionByRuntime(SearchFunctionByRuntimeRequest) returns (SearchFunctionByRuntimeResponse); // Add this line
+
+}
