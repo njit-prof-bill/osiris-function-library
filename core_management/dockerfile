@@ -1,0 +1,22 @@
+# Start with a Python base image
+FROM python:3.9
+
+# Set the working directory
+WORKDIR /osiris_function_library
+
+# Copy the entire project into the container
+COPY . .
+
+# Install gRPC and other dependencies
+RUN pip install pytest==6.2.5 unittest2 mock grpcio grpcio-tools
+
+# Generate the gRPC files in core_management/proto
+RUN python -m grpc_tools.protoc -Icore_management/proto --python_out=core_management --grpc_python_out=core_management core_management/proto/core_management.proto
+
+# Set the PYTHONPATH to include both the project root and core_management
+ENV PYTHONPATH="/osiris_function_library:/osiris_function_library/core_management"
+
+# Copy and set entrypoint script
+COPY core_management/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
