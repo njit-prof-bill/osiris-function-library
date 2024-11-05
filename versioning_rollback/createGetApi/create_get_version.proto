@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package create_get_version;
+
+// Define the request and response messages
+message CreateFunctionRequest {
+    string function_name = 1;
+    string code = 2;
+    string version = 3;
+}
+
+message CreateFunctionResponse {
+    bool success = 1;
+}
+
+message GetFunctionDetailsRequest {
+    string function_name = 1;
+    string version = 2;
+}
+
+message GetFunctionDetailsResponse {
+    string function_name = 1;
+    string code = 2;
+    string runtime = 3;
+    string version = 4;
+}
+
+// Define the FunctionVersioning service
+service CreateGetServicer {
+    rpc CreateFunctionVersion(CreateFunctionRequest) returns (CreateFunctionResponse);
+    rpc GetFunctionVersionDetails(GetFunctionDetailsRequest) returns (GetFunctionDetailsResponse);
+}
