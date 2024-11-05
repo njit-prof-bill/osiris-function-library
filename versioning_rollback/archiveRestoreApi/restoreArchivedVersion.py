@@ -1,4 +1,4 @@
-from archiveRestoreApi import archiveRestoreServer
+from . import archiveRestoreServer
 
 def restoreArchivedVersion(function_name: str, version: str) -> bool:
     functions = archiveRestoreServer.functions

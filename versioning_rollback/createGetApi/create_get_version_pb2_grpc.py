@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from createGetApi import create_get_version_pb2 as create__get__version__pb2
+from . import create_get_version_pb2 as create__get__version__pb2
 
 GRPC_GENERATED_VERSION = '1.67.1'
 GRPC_VERSION = grpc.__version__

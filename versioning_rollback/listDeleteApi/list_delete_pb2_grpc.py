@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from listDeleteApi import list_delete_pb2 as list__delete__pb2
+from . import list_delete_pb2 as list__delete__pb2
 
 GRPC_GENERATED_VERSION = '1.67.0'
 GRPC_VERSION = grpc.__version__

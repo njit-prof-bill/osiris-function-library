@@ -1,6 +1,6 @@
 from concurrent import futures
 import grpc
-from archiveRestoreApi import archive_restore_pb2_grpc, archive_restore_pb2, restoreArchivedVersion, archiveFunctionVersion
+from . import archive_restore_pb2_grpc, archive_restore_pb2, restoreArchivedVersion, archiveFunctionVersion
 
 functions = {}
 

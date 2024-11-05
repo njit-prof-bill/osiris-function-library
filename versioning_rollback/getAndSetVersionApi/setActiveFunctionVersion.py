@@ -1,5 +1,5 @@
 import grpc
-from getAndSetVersionApi import function_version_pb2_grpc, function_version_pb2
+from . import function_version_pb2_grpc, function_version_pb2
 
 def get_active_function_version():
     with grpc.insecure_channel('localhost:50051') as channel:

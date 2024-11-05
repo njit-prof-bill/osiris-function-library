@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from archiveRestoreApi import archive_restore_pb2 as archive__restore__pb2
+from . import archive_restore_pb2 as archive__restore__pb2
 
 GRPC_GENERATED_VERSION = '1.67.1'
 GRPC_VERSION = grpc.__version__

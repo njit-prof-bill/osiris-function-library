@@ -1,6 +1,6 @@
 import grpc
 from concurrent import futures
-from createGetApi import create_get_version_pb2, create_get_version_pb2_grpc
+from . import create_get_version_pb2, create_get_version_pb2_grpc
 
 # Store functions and their versions
 functions_db = {}

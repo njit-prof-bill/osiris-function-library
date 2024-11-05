@@ -1,6 +1,6 @@
 import grpc
 from concurrent import futures
-from getAndSetVersionApi import function_version_pb2_grpc, function_version_pb2
+from . import function_version_pb2_grpc, function_version_pb2
 
 # Assuming existing code for version management is here
 # For example:

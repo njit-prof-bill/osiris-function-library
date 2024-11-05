@@ -1,5 +1,5 @@
 import grpc
-from createGetApi import create_get_version_pb2, create_get_version_pb2_grpc
+from . import create_get_version_pb2, create_get_version_pb2_grpc
 
 def run():
     # Connect to the server
